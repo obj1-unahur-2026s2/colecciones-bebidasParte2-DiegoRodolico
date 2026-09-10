@@ -1,30 +1,41 @@
 object whisky {
+  var nutriente = 0
+  method nutriente() = nutriente
   method rendimientoQueOtorga(dosisConsumida) = 0.9 ** dosisConsumida
 }
 
 object terere {
+  var nutriente = 0
+  method nutriente() = nutriente
   method rendimientoQueOtorga(dosisConsumida) = 1.max(0.1 * dosisConsumida)
 }
 
 object cianuro {
+  var nutriente = 0
+  method nutriente() = nutriente
   method rendimientoQueOtorga(dosisConsumida) = 0
 }
-object licuadoFrutas{
+object licuado{
   const ingredientes = []
-  method agregarIngrediente(nuevoIngrediente){
-    ingredientes.add(nuevoIngrediente)
+  method rendimientoQueOtorga(dosisConsumida) {
+    return self.sumaTotalDeNutrientesDeIngredientes() * dosisConsumida
   }
-  method rendimientoQueOtorga(dosisConsumida) = dosisConsumida * ingredientes.sum()
-
+  method sumaTotalDeNutrientesDeIngredientes(){
+    return ingredientes.sum({i=>i.nutriente()})
+  }
+  method agregar(nuevoIngrediente){ingredientes.add(nuevoIngrediente)}
 }
 object aguaSaborizada{
-  const composicion = []
-  //nose 0.75 de awa y 0.25 de algo
+  var bebidaSaborizante = whisky // 1/4 del total o 0.25
+  const agua = 1 // 3/4 del total o 0.75
+  method cambiarSabor(nuevaBebida){bebidaSaborizante = nuevaBebida}
+  method bebidaSaborizante() = bebidaSaborizante
+  method rendimientoQueOtorga(dosisConsumida) = agua + bebidaSaborizante.rendimientoQueOtorga(dosisConsumida) * 0.25
+
 }
 object coctel{
   const bebidas = []
-  method rendimientoQueOtorga(dosis) = self.contarBebidas(dosis)  
-  method contarBebidas(dosis){
-    return bebidas.count({b=>b.rendimientoQueOtorga(dosis)})
-  }
+    method rendimientoQueOtorga(dosisConsumida) = bebidas.
+
+
 }
