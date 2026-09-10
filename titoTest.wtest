@@ -13,4 +13,27 @@ describe "Tests de Tito" {
     tito.consumir(10, whisky)
     assert.equals(10, tito.dosisConsumida())
   }
+  test "hacemos licuado de Whisky y Terere y nos da de rendimiento 60 tomando 10 "{
+    licuado.agregar(whisky)
+    licuado.agregar(terere)
+    assert.equals(60, licuado.rendimientoQueOtorga(10))
+  }
+  test "este licuado forma parte de un coctel y no afecta el rendimiento "{
+    licuado.agregar(whisky)
+    licuado.agregar(terere)
+    coctel.agregarBebidas(licuado)
+    assert.equals(60,coctel.rendimientoQueOtorga(10))    
+  }
+  test "el coctel puede incluir a la vez whisky y agua saborizada co whisky"{
+    aguaSaborizada.cambiarSabor(whisky)
+    coctel.agregarBebidas(whisky)
+    coctel.agregarBebidas(aguaSaborizada)
+    assert.equals(0.37907,coctel.rendimientoQueOtorga(10))   
+  }
+  test "el coctel no puede incluir el agua saborizada con coctel"{
+    aguaSaborizada.cambiarSabor(coctel)
+    coctel.agregarBebidas(aguaSaborizada)
+    assert.equals(0.37907,coctel.rendimientoQueOtorga(10)) 
+    
+  }
 }

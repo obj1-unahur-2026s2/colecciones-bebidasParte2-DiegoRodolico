@@ -1,11 +1,11 @@
 object whisky {
-  var nutriente = 0
+  var nutriente = 4
   method nutriente() = nutriente
   method rendimientoQueOtorga(dosisConsumida) = 0.9 ** dosisConsumida
 }
 
 object terere {
-  var nutriente = 0
+  var nutriente = 2
   method nutriente() = nutriente
   method rendimientoQueOtorga(dosisConsumida) = 1.max(0.1 * dosisConsumida)
 }
@@ -35,7 +35,8 @@ object aguaSaborizada{
 }
 object coctel{
   const bebidas = []
-    method rendimientoQueOtorga(dosisConsumida) = bebidas.
+  method agregarBebidas(nuevaBebida){bebidas.add(nuevaBebida)}
+    method rendimientoQueOtorga(dosisConsumida) = bebidas.fold(1,{acum, beb => acum * beb.rendimientoQueOtorga(dosisConsumida)})
 
 
 }
